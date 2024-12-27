@@ -11,7 +11,7 @@ const EditPage = ({ params }) => {
   useEffect(() => {
     // 게시글 불러오기
     axios
-      .get(`/api/posts/${resolvedParams.id}`)
+      .get(`/api/posts/${resolvedParams._id}`)
       .then((res) => {
         setTitle(res.data.title);
         setContent(res.data.content);
@@ -20,12 +20,12 @@ const EditPage = ({ params }) => {
         console.error(error);
         router.push('/posts');
       });
-  }, [resolvedParams.id, router]);
+  }, [resolvedParams._id, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`/api/posts/${resolvedParams.id}`, { title, content });
+      const res = await axios.put(`/api/posts/${resolvedParams._id}`, { title, content });
 
       if (res.status === 201) {
         alert('글수정 완료');

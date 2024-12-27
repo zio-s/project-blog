@@ -56,6 +56,13 @@ const WritePage = () => {
             id='cont'
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                // Shift + Enter는 줄바꿈으로 허용
+                e.preventDefault(); // 기본 줄바꿈 동작 방지
+                handleSubmit(e);
+              }
+            }}
             placeholder='당신의 이야기를 적어보세요.'
             className='w-full h-full text-2xl'
           ></textarea>
